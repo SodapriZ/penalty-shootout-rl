@@ -15,6 +15,12 @@ Research-grade multi-agent reinforcement learning project for a soccer penalty s
 
 - Start implementing Phase 1 training code only after Step 1 conventions are enforced.
 
+### Step 1.5 (now) - Local AI-enabled development environment
+
+- VS Code workspace settings and tasks are available in `.vscode/`.
+- Recommended extensions are listed in `.vscode/extensions.json`.
+- Local development environment best practices are documented in `docs/development-environment.md`.
+
 ## What is implemented now
 
 - Production-ready project skeleton (Python 3.12+, src layout, CI, linting, typing).
@@ -77,3 +83,10 @@ pytest
 - `.github/ISSUE_TEMPLATE/bug_report.yml`
 - `.github/ISSUE_TEMPLATE/feature_request.yml`
 - `.github/workflows/branch-policy.yml`
+
+## Development environment files
+
+- `.vscode/settings.json`
+- `.vscode/extensions.json`
+- `.vscode/tasks.json`
+- `docs/development-environment.md`
