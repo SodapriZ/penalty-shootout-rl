@@ -22,7 +22,7 @@ Reading order:
 1. 03-multi-agent-setting.md
 1. 04-self-play.md
 1. 05-hands-on.md
-1. 07-rl-and-marl-mathematics-basics.md
+1. 06-rl-and-marl-mathematics-basics.md
 1. 99-project-integration-checklist.md
 
 How to use this folder:
