@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev: install",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "pip",
+        "install",
+        "-e",
+        ".[dev]"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "quality: ruff check",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "quality: ruff format check",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "quality: mypy",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "mypy",
+        "src"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "quality: pytest",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "pytest"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "quality: all",
+      "dependsOn": [
+        "quality: ruff check",
+        "quality: ruff format check",
+        "quality: mypy",
+        "quality: pytest"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}
