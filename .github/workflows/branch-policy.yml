@@ -1,0 +1,44 @@
+name: Branch Policy
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  branch-and-pr-policy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate branch name
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          PATTERN='^(feat|fix|refactor|test|docs|chore)/(env|agent|policy|training|eval|viz|infra|ci|docs)-[a-z0-9-]+$|^exp/[a-z0-9-]+-[a-z0-9-]+$|^release/[0-9]+\.[0-9]+$|^hotfix/[0-9]+\.[0-9]+\.[0-9]+-[a-z0-9-]+$'
+          if [[ ! "$BRANCH" =~ $PATTERN ]]; then
+            echo "Invalid branch name: $BRANCH"
+            echo "Expected one of:"
+            echo "  feat/<scope>-<description>"
+            echo "  fix/<scope>-<description>"
+            echo "  refactor/<scope>-<description>"
+            echo "  test/<scope>-<description>"
+            echo "  docs/<scope>-<description>"
+            echo "  chore/<scope>-<description>"
+            echo "  exp/<topic>-<description>"
+            echo "  release/<major.minor>"
+            echo "  hotfix/<major.minor.patch>-<description>"
+            exit 1
+          fi
+
+      - name: Validate PR title (Conventional Commits)
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          PATTERN='^(feat|fix|refactor|test|docs|chore|perf)(\([a-z0-9_-]+\))?: [a-z].+$'
+          if [[ ! "$TITLE" =~ $PATTERN ]]; then
+            echo "Invalid PR title: $TITLE"
+            echo "Expected Conventional Commit style."
+            echo "Example: feat(training): add self-play episode sampler"
+            exit 1
+          fi

@@ -1,0 +1,39 @@
+name: Feature Request
+description: Suggest a feature for environment, training, evaluation, or tooling.
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What limitation are you solving?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Include architecture impact and alternatives considered.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Clear and testable outcomes.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Roadmap Phase
+      options:
+        - Phase 0
+        - Phase 1
+        - Phase 2
+        - Phase 3
+        - Phase 4

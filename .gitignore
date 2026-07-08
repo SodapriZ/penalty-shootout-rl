@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# RL artifacts and experiment outputs
+runs/
+outputs/
+checkpoints/
+artifacts/
+wandb/
+.hydra/
+
+# Rendered media and reports
+media/
+reports/
+
+# Local tool state
+.python-version
